@@ -10,7 +10,7 @@ import java.util.List;
 public interface EmployeeService {
 
   List<EmployeeModel> add(EmployeeModel employee);
-  List<EmployeeModel> deleteById(Integer deletedId);
+  List<EmployeeModel> deleteById(Integer id);
 
   List<EmployeeModel> getById(Integer id);
 
