@@ -4,13 +4,14 @@ package com.employee.EmployeeRestApi.service;
 import com.employee.EmployeeRestApi.Model.EmployeeModel;
 import com.employee.EmployeeRestApi.Model.EmployeeModel1;
 import com.employee.EmployeeRestApi.Model.EmployeeModel2;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
 public interface EmployeeService {
 
-  List<EmployeeModel> add(EmployeeModel employee);
-  List<EmployeeModel> deleteById(Integer id);
+  List<EmployeeModel> add(EmployeeModel employee, BindingResult bindingResult);
+  List<EmployeeModel> deleteById(Integer id, BindingResult bindingResult);
 
   List<EmployeeModel> getById(Integer id);
 

@@ -3,6 +3,7 @@ package com.employee.EmployeeRestApi.Model;
 public class Benefit {
     private int benefitId;
     private String benefitName;
+    private String description;
 
     public int getBenefitId() {
         return benefitId;
@@ -46,7 +47,7 @@ public class Benefit {
         this.description = description;
     }
 
-    private String description;
+
 
 
 }

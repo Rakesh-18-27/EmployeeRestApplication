@@ -3,7 +3,9 @@ package com.employee.EmployeeRestApi.service;
 import com.employee.EmployeeRestApi.Model.EmployeeModel;
 import com.employee.EmployeeRestApi.Model.EmployeeModel1;
 import com.employee.EmployeeRestApi.Model.EmployeeModel2;
+import com.employee.EmployeeRestApi.exception.NotValidException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,19 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     List<EmployeeModel> employees=new ArrayList<EmployeeModel>();
     @Override
-    public List<EmployeeModel> add(EmployeeModel employee) {
+    public List<EmployeeModel> add(EmployeeModel employee, BindingResult bindingResult) throws NotValidException {
+        if(bindingResult.hasErrors()){
+            throw new NotValidException(bindingResult.getFieldErrors().get(0).getDefaultMessage());
+        }
        employees.add(employee);
        return employees;
     }
 
     @Override
-    public List<EmployeeModel> deleteById(Integer id) {
-
+    public List<EmployeeModel> deleteById(Integer id, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            throw  new NotValidException(bindingResult.getFieldErrors().get(0).getDefaultMessage());
+        }
         List<EmployeeModel> deletedEmployees=employees.stream().filter(employee->employee.getEmployeeId()==id).collect(Collectors.toList());
         if(deletedEmployees.get(0)!=null){
             employees.remove(deletedEmployees.get(0));
