@@ -6,6 +6,7 @@ import com.employee.EmployeeRestApi.Model.EmployeeModel2;
 import com.employee.EmployeeRestApi.exception.NotValidException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,13 @@ public class EmployeeServiceImpl implements EmployeeService{
     List<EmployeeModel> employees=new ArrayList<EmployeeModel>();
     @Override
     public List<EmployeeModel> add(EmployeeModel employee, BindingResult bindingResult) throws NotValidException {
-        if(bindingResult.hasErrors()){
-            throw new NotValidException(bindingResult.getFieldErrors().get(0).getDefaultMessage());
+        if (bindingResult.hasErrors()) {
+            FieldError error = bindingResult.getFieldErrors().get(0);
+            throw new NotValidException(error.getDefaultMessage());
+        }else{
+            employees.add(employee);
         }
-       employees.add(employee);
+
        return employees;
     }
 

@@ -5,6 +5,7 @@ import com.employee.EmployeeRestApi.Model.EmployeeModel1;
 import com.employee.EmployeeRestApi.Model.EmployeeModel2;
 import com.employee.EmployeeRestApi.service.EmployeeService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -26,7 +27,7 @@ public class EmployeeController {
 
     }
     @DeleteMapping("/deleteById/{id}")
-    public List<EmployeeModel> deleteById( @PathVariable @NotEmpty(message = "Employee is should not empty ")  Integer id,BindingResult bindingResult){
+    public List<EmployeeModel> deleteById(@PathVariable @NotBlank(message = "Employee id is should not empty ")  Integer id, BindingResult bindingResult){
 
         return employeeService.deleteById(id,bindingResult);
     }
