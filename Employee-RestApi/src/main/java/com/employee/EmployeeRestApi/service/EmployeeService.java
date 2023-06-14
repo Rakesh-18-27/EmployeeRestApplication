@@ -11,7 +11,7 @@ import java.util.List;
 public interface EmployeeService {
 
   List<EmployeeModel> add(EmployeeModel employee, BindingResult bindingResult);
-  List<EmployeeModel> deleteById(Integer id, BindingResult bindingResult);
+  List<EmployeeModel> deleteById(Integer id);
 
   List<EmployeeModel> getById(Integer id);
 

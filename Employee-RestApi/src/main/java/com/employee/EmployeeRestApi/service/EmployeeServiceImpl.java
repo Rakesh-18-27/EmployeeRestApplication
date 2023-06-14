@@ -28,10 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public List<EmployeeModel> deleteById(Integer id, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            throw  new NotValidException(bindingResult.getFieldErrors().get(0).getDefaultMessage());
-        }
+    public List<EmployeeModel> deleteById(Integer id) {
         List<EmployeeModel> deletedEmployees=employees.stream().filter(employee->employee.getEmployeeId()==id).collect(Collectors.toList());
         if(deletedEmployees.get(0)!=null){
             employees.remove(deletedEmployees.get(0));
